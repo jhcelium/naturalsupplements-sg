@@ -10,7 +10,7 @@ const faqItems = frontmatter.faq ?? [];
 const faqJsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: faqItems.map((item) => ({
+  mainEntity: faqItems.slice(0, 4).map((item) => ({
     "@type": "Question",
     name: item.q,
     acceptedAnswer: { "@type": "Answer", text: item.a },
@@ -34,6 +34,10 @@ const faqJsonLd = JSON.stringify({
     />
     <figcaption>Bioavailability reference: absorption depends on chemical form, digestive health, and timing — not solely on whether an ingredient is labelled natural or synthetic.</figcaption>
   </figure>
+
+  <div class="hub-link-block">
+    <p>For a broader look at the Singapore supplement market, see the <a href="https://supplementsingapore.neoi.jp">Supplements Singapore guide</a>.</p>
+  </div>
 
   <p style="margin-top: 32px;">
     <a href={site.officialSite} target="_blank" rel="noopener" class="official-link">
