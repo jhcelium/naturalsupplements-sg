@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "jsx": "preserve",
+    "jsxImportSource": "astro/jsx-runtime",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "target": "esnext",
+    "types": ["astro/client"],
+    "strict": true
+  }
+}

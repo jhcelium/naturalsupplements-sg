@@ -1,0 +1,30 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { loadMarkdown } from "../lib/content";
+
+const loaded = loadMarkdown("faq.md");
+const { frontmatter, html } = loaded;
+const faqItems = frontmatter.faq ?? [];
+
+const faqJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+});
+---
+<BaseLayout title={frontmatter.title} description={frontmatter.description} path="/faq">
+  <h1>{frontmatter.title}</h1>
+
+  <div class="disclaimer">
+    General educational information only. Not medical advice.
+    If pregnant, nursing, or on medication, consult a qualified clinician.
+  </div>
+
+  <article set:html={html} />
+
+  <script type="application/ld+json" set:html={faqJsonLd}></script>
+</BaseLayout>

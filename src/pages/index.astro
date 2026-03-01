@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { loadMarkdown, loadArticle, listArticleIds } from "../lib/content";
+import site from "../../data/site.json";
+
+const home = loadMarkdown("home.md");
+const articleIds = listArticleIds();
+const startHere = articleIds.slice(0, 6).map((id) => {
+  const { frontmatter } = loadArticle(id);
+  return { id, href: `/articles/${id}`, title: frontmatter.title };
+});
+---
+<BaseLayout title={home.frontmatter.title} description={home.frontmatter.description} path="/">
+  <h1>Health Supplements in Singapore</h1>
+
+  <div class="disclaimer">
+    This site provides general educational information on health supplements.
+    It is not medical advice, diagnosis, or treatment recommendation.
+    Always speak with a qualified clinician about your own situation.
+  </div>
+
+  <article set:html={home.html} />
+
+  <section>
+    <h2>Start here</h2>
+    <ul>
+      {startHere.map((item) => (
+        <li><a href={item.href}>{item.title}</a></li>
+      ))}
+    </ul>
+  </section>
+
+  <section>
+    <h2>Explore related topics</h2>
+    <ul>
+      {site.exploreLinks.map((link) => (
+        <li><a href={link.url}>{link.label}</a></li>
+      ))}
+    </ul>
+  </section>
+
+  <section>
+    <h2>Official Neoi Site</h2>
+    <p>
+      For product information and brand details, visit the official Neoi supplement site.
+    </p>
+    <p>
+      <a href={site.officialSite} target="_blank" rel="noopener noreferrer" class="official-link">
+        Visit Official Neoi Supplement Site →
+      </a>
+    </p>
+  </section>
+</BaseLayout>

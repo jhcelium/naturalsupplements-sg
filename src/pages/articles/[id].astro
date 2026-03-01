@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { loadArticle, listArticleIds } from "../../lib/content";
+
+export async function getStaticPaths() {
+  const ids = listArticleIds();
+  return ids.map((id) => ({ params: { id } }));
+}
+
+const { id } = Astro.params;
+const article = loadArticle(id!);
+---
+<BaseLayout
+  title={article.frontmatter.title}
+  description={article.frontmatter.description}
+  path={`/articles/${id}`}
+>
+  <h1>{article.frontmatter.title}</h1>
+  <article set:html={article.html} />
+  <p style="margin-top:32px"><a href="/">← Back to home</a></p>
+</BaseLayout>
