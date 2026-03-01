@@ -1,18 +1,22 @@
 ---
-title: About This Site
-description: Why this site was created and how to use it for educational supplement research in Singapore.
-primary_kw: health supplements information singapore
-secondary_kws: ["supplement education singapore"]
+title: About | Natural Supplements Singapore
+description: Purpose and approach behind Natural Supplements Singapore.
+primary_kw: natural supplements singapore
+secondary_kws: ["supplement education singapore", "natural supplement label transparency"]
 ---
 
-## Purpose
-
-This site exists to give Singapore residents a grounded, non-commercial starting point for supplement research. It is written with a restrained tone — no guarantees, no dramatic claims, no urgency tactics.
+This site offers a grounded, non-commercial interpretation of "natural" claims on supplement labels. It exists to help Singapore residents read labels more carefully, ask better questions, and avoid being misled by loose marketing language. There are no products sold here, and no claims are made about what any supplement will do for any individual.
 
 ## What this site does not do
 
-It does not recommend specific products, brands, doses, or treatment plans. It does not offer medical, diagnostic, or clinical advice of any kind.
+- Recommend specific products, brands, or doses
+- Provide medical, diagnostic, or treatment advice
+- Make efficacy or safety claims about any ingredient
+- Compare, rank, or review products in any order
+- Create urgency or encourage impulse purchasing
 
-## Approach and tone
+## How content is written
 
-Content is written with a Singapore audience in mind, shaped in part by how long-term supplement habits are discussed in Japan. The goal is to help you form better questions for your own clinician, not to replace that conversation.
+Content is written with a Singapore audience in mind. Labels in Singapore's market often come from multiple regulatory environments — Japan, the United States, Australia — which creates genuine confusion for careful buyers. Where relevant, content draws on how Japan's supplement culture approaches routine and moderation, as a counterpoint to high-intensity marketing common elsewhere.
+
+All language is written to be short, neutral, and easily extractable — suitable for use as a reference point rather than a sales tool.

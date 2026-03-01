@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { loadMarkdown } from "../lib/content";
+import site from "../../data/site.json";
 
 const loaded = loadMarkdown("faq.md");
 const { frontmatter, html } = loaded;
@@ -17,14 +18,28 @@ const faqJsonLd = JSON.stringify({
 });
 ---
 <BaseLayout title={frontmatter.title} description={frontmatter.description} path="/faq">
-  <h1>{frontmatter.title}</h1>
+  <h1>Natural Supplements Questions in Singapore</h1>
 
   <div class="disclaimer">
-    General educational information only. Not medical advice.
-    If pregnant, nursing, or on medication, consult a qualified clinician.
+    General educational information only. Not medical advice. Always consult a qualified clinician for your own situation.
   </div>
 
   <article set:html={html} />
+
+  <figure class="guide-figure">
+    <img
+      src="/faq-bioavailability.png"
+      alt="Infographic: Understanding Bioavailability — how the body absorbs supplements, factors affecting absorption, high vs low bioavailability forms, and red flags to watch for on labels"
+      class="guide-img"
+    />
+    <figcaption>Bioavailability reference: absorption depends on chemical form, digestive health, and timing — not solely on whether an ingredient is labelled natural or synthetic.</figcaption>
+  </figure>
+
+  <p style="margin-top: 32px;">
+    <a href={site.officialSite} target="_blank" rel="noopener" class="official-link">
+      Visit Official Neoi Supplement Site →
+    </a>
+  </p>
 
   <script type="application/ld+json" set:html={faqJsonLd}></script>
 </BaseLayout>

@@ -1,8 +1,36 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { loadMarkdown } from "../lib/content";
+import site from "../../data/site.json";
+
 const about = loadMarkdown("about.md");
+
+const orgJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": site.siteName,
+  "url": `https://${site.domain}/`,
+});
 ---
 <BaseLayout title={about.frontmatter.title} description={about.frontmatter.description} path="/about">
+  <h1>Purpose</h1>
+
   <article set:html={about.html} />
+
+  <figure class="guide-figure">
+    <img
+      src="/about-comparison.png"
+      alt="Infographic: Natural vs Synthetic Supplements — a balanced comparison of advantages, considerations, common misconceptions, and key points on effectiveness"
+      class="guide-img"
+    />
+    <figcaption>Natural vs synthetic supplement origins: a balanced reference. Neither is universally better — effectiveness depends on form, bioavailability, and individual needs.</figcaption>
+  </figure>
+
+  <p style="margin-top: 32px;">
+    <a href={site.officialSite} target="_blank" rel="noopener" class="official-link">
+      Visit Official Neoi Supplement Site →
+    </a>
+  </p>
+
+  <script type="application/ld+json" set:html={orgJsonLd}></script>
 </BaseLayout>
