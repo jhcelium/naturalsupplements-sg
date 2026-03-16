@@ -10,6 +10,23 @@ const websiteJsonLd = JSON.stringify({
   "@type": "WebSite",
   "name": site.siteName,
   "url": `https://${site.domain}/`,
+  "inLanguage": "en-SG",
+  "description": home.frontmatter.description,
+  "about": {
+    "@type": "Thing",
+    "name": "Natural supplement label transparency in Singapore",
+    "description": "Educational content about what 'natural', 'clean label', and 'organic' mean on supplement packaging sold in Singapore.",
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": site.siteName,
+    "url": `https://${site.domain}/`,
+    "logo": `https://${site.domain}/logo.png`,
+  },
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["h1", "main > p:first-of-type"],
+  },
 });
 ---
 <BaseLayout title={home.frontmatter.title} description={home.frontmatter.description} path="/">

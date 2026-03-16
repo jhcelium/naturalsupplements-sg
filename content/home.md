@@ -74,3 +74,11 @@ For Singapore buyers, this means:
 - Both terms describe inputs and processes, not outcomes
 
 Neither label alone is a reliable proxy for quality. A fuller picture requires reading the ingredient list, checking certifications individually, and if needed, consulting a clinician or pharmacist.
+
+## How Singapore regulates health supplements
+
+In Singapore, health supplements are regulated by the **Health Sciences Authority (HSA)** under the Health Products Act. Unlike pharmaceutical drugs, most health supplements do not require pre-market approval from HSA before they can be sold. Instead, they operate under a post-market regulatory framework: importers and manufacturers are responsible for ensuring their products are safe and that labelling is accurate and not misleading.
+
+This regulatory structure means the word "natural" on a supplement label sold in Singapore is a marketing descriptor, not an HSA-defined or HSA-verified claim. HSA's labelling guidelines prohibit health claims that imply a supplement can treat or cure a disease, but terms like "natural", "clean label", or "herbal" are marketing language that falls outside any standardised definition enforced by the authority.
+
+For consumers, this means the burden of evaluation largely rests on reading labels carefully, checking certifications independently, and asking a pharmacist or clinician when uncertain about a specific product or ingredient.

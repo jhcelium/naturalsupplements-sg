@@ -13,6 +13,8 @@ export type Frontmatter = {
   primary_kw?: string;
   secondary_kws?: string[];
   faq?: FaqItem[];
+  datePublished?: string;
+  dateModified?: string;
 };
 
 export type LoadedMarkdown = {

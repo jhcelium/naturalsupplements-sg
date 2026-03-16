@@ -7,13 +7,21 @@ const loaded = loadMarkdown("faq.md");
 const { frontmatter, html } = loaded;
 const faqItems = frontmatter.faq ?? [];
 
+const today = new Date().toISOString().split("T")[0];
+
 const faqJsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: faqItems.map((item) => ({
+  "inLanguage": "en-SG",
+  "dateModified": today,
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["h1", "article p:first-of-type"],
+  },
+  "mainEntity": faqItems.map((item) => ({
     "@type": "Question",
-    name: item.q,
-    acceptedAnswer: { "@type": "Answer", text: item.a },
+    "name": item.q,
+    "acceptedAnswer": { "@type": "Answer", "text": item.a },
   })),
 });
 ---
