@@ -4,23 +4,33 @@ interface Props {
   title?: string;
   description?: string;
   path?: string;
+  image?: string;
 }
-const { title, description, path } = Astro.props;
+const { title, description, path, image } = Astro.props;
 
 const fullTitle = title ? `${title} | ${site.siteName}` : site.siteName;
 const canonical = `https://${site.domain}${path ?? "/"}`;
 const desc = description ?? "";
+const ogImage = `https://${site.domain}${image ?? "/logo.png"}`;
 ---
 <title>{fullTitle}</title>
 <meta name="robots" content="index,follow" />
 {desc && <meta name="description" content={desc} />}
 <link rel="canonical" href={canonical} />
+<link rel="alternate" hreflang="en-SG" href={canonical} />
+<link rel="alternate" hreflang="en" href={canonical} />
 
 <meta property="og:type" content="website" />
 <meta property="og:title" content={fullTitle} />
 {desc && <meta property="og:description" content={desc} />}
 <meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="en_SG" />
+<meta property="og:site_name" content={site.siteName} />
 
-<meta name="twitter:card" content="summary" />
+<meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={fullTitle} />
 {desc && <meta name="twitter:description" content={desc} />}
+<meta name="twitter:image" content={ogImage} />
