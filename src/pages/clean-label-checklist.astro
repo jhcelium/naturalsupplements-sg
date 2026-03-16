@@ -4,7 +4,9 @@ import site from "../../data/site.json";
 
 const title       = "Clean Label Checklist";
 const description = "A structured checklist explaining clean label concepts in natural supplements sold in Singapore.";
-const path        = "/clean-label-checklist/";
+const path        = "/clean-label-checklist";
+
+const today = new Date().toISOString().split("T")[0];
 
 const webPageJsonLd = JSON.stringify({
   "@context": "https://schema.org",
@@ -12,11 +14,91 @@ const webPageJsonLd = JSON.stringify({
   "name": `${title} | ${site.siteName}`,
   "description": description,
   "url": `https://${site.domain}${path}`,
+  "inLanguage": "en-SG",
+  "dateModified": today,
   "isPartOf": {
     "@type": "WebSite",
     "name": site.siteName,
     "url": `https://${site.domain}/`,
   },
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["h1", ".key-takeaway p"],
+  },
+});
+
+const definedTermSetJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "DefinedTermSet",
+  "name": "Natural Supplement Label Terms — Singapore",
+  "inLanguage": "en-SG",
+  "url": `https://${site.domain}${path}`,
+  "hasDefinedTerm": [
+    {
+      "@type": "DefinedTerm",
+      "name": "Natural Supplements",
+      "description": "Health supplement products using ingredients described as plant-derived, mineral-based, or animal-sourced rather than fully synthesised. The term has no standardised legal definition in Singapore or most supplement markets.",
+      "inDefinedTermSet": `https://${site.domain}${path}`,
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Clean Label",
+      "description": "A marketing phrase, not a regulated standard, describing supplement packaging with a shorter, more readable ingredient list and fewer synthetic additives. Each manufacturer defines the term independently.",
+      "inDefinedTermSet": `https://${site.domain}${path}`,
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Organic Supplement",
+      "description": "A supplement ingredient grown or raised without synthetic pesticides or certain agricultural inputs, verified by a certifying body such as USDA Organic or EU Organic. Distinct from 'natural', which requires no third-party audit.",
+      "inDefinedTermSet": `https://${site.domain}${path}`,
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Herbal Supplement",
+      "description": "A supplement using plant-derived active ingredients — roots, leaves, bark, or extracts. Herbal does not imply safety for all individuals; some botanical ingredients interact with medications.",
+      "inDefinedTermSet": `https://${site.domain}${path}`,
+    },
+  ],
+});
+
+const faqJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "en-SG",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does 'natural supplements' mean in Singapore?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In Singapore, 'natural supplements' refers to health supplement products using ingredients described as plant-derived, mineral-based, or animal-sourced rather than fully synthesised. The phrase does not correspond to a regulated standard — it is a consumer-facing marketing descriptor.",
+      },
+    },
+    {
+      "@type": "Question",
+      "name": "What is a clean label supplement?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "'Clean label' is a marketing phrase, not a certified standard. It typically describes packaging with a shorter, more readable ingredient list and fewer synthetic additives. There is no official legal definition, and each manufacturer decides what qualifies.",
+      },
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between natural and organic supplements in Singapore?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "'Natural' refers only to ingredient origin (plant, mineral, or animal-sourced) and requires no third-party audit. 'Organic' refers to how an ingredient was grown — without certain synthetic pesticides or inputs — and is verified by a certifying body such as USDA Organic or EU Organic. An organic ingredient is natural by definition, but a natural ingredient is not automatically organic.",
+      },
+    },
+    {
+      "@type": "Question",
+      "name": "What should I look for on a natural supplement label?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Start with the full ingredient list. Look for botanical or scientific names, disclosed quantities for each active ingredient, country of manufacture, and any third-party certification logos. Check what each certification actually verifies — contaminant testing is different from potency verification.",
+      },
+    },
+  ],
 });
 ---
 <BaseLayout title={title} description={description} path={path}>
@@ -107,5 +189,7 @@ const webPageJsonLd = JSON.stringify({
   <p>This page covers clean label terminology as it relates to natural supplement packaging. For a broader overview of the supplement market in Singapore, including how products are distributed across pharmacy and online channels, see the <a href="https://supplementsingapore.neoi.jp/">Supplements Singapore guide</a>.</p>
 
   <script type="application/ld+json" set:html={webPageJsonLd}></script>
+  <script type="application/ld+json" set:html={definedTermSetJsonLd}></script>
+  <script type="application/ld+json" set:html={faqJsonLd}></script>
 
 </BaseLayout>

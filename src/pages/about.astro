@@ -12,7 +12,22 @@ const orgJsonLd = JSON.stringify({
   "url": `https://${site.domain}/`,
   "logo": `https://${site.domain}/logo.png`,
   "description": "An educational resource about natural supplement labels, clean label terminology, and ingredient transparency for Singapore consumers.",
+  "inLanguage": "en-SG",
   "sameAs": [site.officialSite],
+  "knowsAbout": [
+    "natural supplements",
+    "clean label supplements",
+    "herbal supplements Singapore",
+    "supplement label transparency",
+    "Health Sciences Authority Singapore",
+    "Health Products Act Singapore",
+    "organic vs natural supplements",
+    "supplement ingredient disclosure",
+  ],
+  "areaServed": {
+    "@type": "Country",
+    "name": "Singapore",
+  },
 });
 ---
 <BaseLayout title={about.frontmatter.title} description={about.frontmatter.description} path="/about">

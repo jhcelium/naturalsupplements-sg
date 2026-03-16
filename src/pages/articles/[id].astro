@@ -11,14 +11,21 @@ export async function getStaticPaths() {
 const { id } = Astro.params;
 const article = loadArticle(id!);
 
+const today = new Date().toISOString().split("T")[0];
+const publishDate = article.frontmatter.datePublished ?? "2024-01-01";
+const modifyDate  = article.frontmatter.dateModified  ?? today;
+
 const articleJsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": article.frontmatter.title,
   "description": article.frontmatter.description ?? "",
   "url": `https://${site.domain}/articles/${id}`,
-  "isPartOf": {
-    "@type": "WebSite",
+  "datePublished": publishDate,
+  "dateModified": modifyDate,
+  "inLanguage": "en-SG",
+  "author": {
+    "@type": "Organization",
     "name": site.siteName,
     "url": `https://${site.domain}/`,
   },
@@ -29,6 +36,15 @@ const articleJsonLd = JSON.stringify({
       "@type": "ImageObject",
       "url": `https://${site.domain}/logo.png`,
     },
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": site.siteName,
+    "url": `https://${site.domain}/`,
+  },
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["h1", "article > p:first-of-type"],
   },
 });
 
