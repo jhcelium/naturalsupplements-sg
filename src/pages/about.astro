@@ -10,10 +10,13 @@ const orgJsonLd = JSON.stringify({
   "@type": "Organization",
   "name": site.siteName,
   "url": `https://${site.domain}/`,
+  "logo": `https://${site.domain}/logo.png`,
+  "description": "An educational resource about natural supplement labels, clean label terminology, and ingredient transparency for Singapore consumers.",
+  "sameAs": [site.officialSite],
 });
 ---
 <BaseLayout title={about.frontmatter.title} description={about.frontmatter.description} path="/about">
-  <h1>Purpose</h1>
+  <h1>About Natural Supplements Singapore</h1>
 
   <article set:html={about.html} />
 
@@ -22,6 +25,7 @@ const orgJsonLd = JSON.stringify({
       src="/about-comparison.png"
       alt="Infographic: Natural vs Synthetic Supplements — a balanced comparison of advantages, considerations, common misconceptions, and key points on effectiveness"
       class="guide-img"
+      loading="lazy"
     />
     <figcaption>Natural vs synthetic supplement origins: a balanced reference. Neither is universally better — effectiveness depends on form, bioavailability, and individual needs.</figcaption>
   </figure>

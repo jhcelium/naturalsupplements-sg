@@ -9,10 +9,12 @@ interface Props {
 const { title, description, path } = Astro.props;
 ---
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-SG">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <meta name="theme-color" content="#1a5ca0" />
     <Seo title={title} description={description} path={path} />
     <style>
       /* ── Variables ───────────────────────────────────── */

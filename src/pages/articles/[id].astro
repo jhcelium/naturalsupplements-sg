@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { loadArticle, listArticleIds } from "../../lib/content";
+import site from "../../../data/site.json";
 
 export async function getStaticPaths() {
   const ids = listArticleIds();
@@ -9,6 +10,46 @@ export async function getStaticPaths() {
 
 const { id } = Astro.params;
 const article = loadArticle(id!);
+
+const articleJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": article.frontmatter.title,
+  "description": article.frontmatter.description ?? "",
+  "url": `https://${site.domain}/articles/${id}`,
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": site.siteName,
+    "url": `https://${site.domain}/`,
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": site.siteName,
+    "logo": {
+      "@type": "ImageObject",
+      "url": `https://${site.domain}/logo.png`,
+    },
+  },
+});
+
+const breadcrumbJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": `https://${site.domain}/`,
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": article.frontmatter.title,
+      "item": `https://${site.domain}/articles/${id}`,
+    },
+  ],
+});
 ---
 <BaseLayout
   title={article.frontmatter.title}
@@ -18,4 +59,6 @@ const article = loadArticle(id!);
   <h1>{article.frontmatter.title}</h1>
   <article set:html={article.html} />
   <p style="margin-top:32px"><a href="/">← Back to home</a></p>
+  <script type="application/ld+json" set:html={articleJsonLd}></script>
+  <script type="application/ld+json" set:html={breadcrumbJsonLd}></script>
 </BaseLayout>
