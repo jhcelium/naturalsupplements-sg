@@ -61,6 +61,15 @@ const definedTermSetJsonLd = JSON.stringify({
   ],
 });
 
+const breadcrumbJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://${site.domain}/` },
+    { "@type": "ListItem", "position": 2, "name": "Clean Label Checklist", "item": `https://${site.domain}${path}` },
+  ],
+});
+
 const faqJsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -191,5 +200,6 @@ const faqJsonLd = JSON.stringify({
   <script type="application/ld+json" set:html={webPageJsonLd}></script>
   <script type="application/ld+json" set:html={definedTermSetJsonLd}></script>
   <script type="application/ld+json" set:html={faqJsonLd}></script>
+  <script type="application/ld+json" set:html={breadcrumbJsonLd}></script>
 
 </BaseLayout>

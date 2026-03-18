@@ -37,6 +37,10 @@ const articleJsonLd = JSON.stringify({
       "url": `https://${site.domain}/logo.png`,
     },
   },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `https://${site.domain}/articles/${id}`,
+  },
   "isPartOf": {
     "@type": "WebSite",
     "name": site.siteName,

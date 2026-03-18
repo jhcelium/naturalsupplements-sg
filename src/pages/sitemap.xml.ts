@@ -14,10 +14,11 @@ export async function GET() {
   const today = new Date().toISOString().split("T")[0];
 
   const staticPages: PageConfig[] = [
-    { path: "/",                      changefreq: "weekly",  priority: "1.0" },
-    { path: "/about",                 changefreq: "monthly", priority: "0.7" },
-    { path: "/faq",                   changefreq: "monthly", priority: "0.8" },
-    { path: "/clean-label-checklist", changefreq: "monthly", priority: "0.8" },
+    { path: "/",                          changefreq: "weekly",  priority: "1.0" },
+    { path: "/about",                     changefreq: "monthly", priority: "0.7" },
+    { path: "/faq",                       changefreq: "monthly", priority: "0.8" },
+    { path: "/clean-label-checklist",     changefreq: "monthly", priority: "0.8" },
+    { path: "/natural-vs-organic-context", changefreq: "monthly", priority: "0.8" },
   ];
 
   const articlePages: PageConfig[] = listArticleIds().map((id) => ({
