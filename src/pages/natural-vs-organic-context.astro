@@ -4,7 +4,17 @@ import site from "../../data/site.json";
 
 const title       = "Natural vs Organic Context";
 const description = 'A structured explanation of how "natural" and "organic" are commonly understood in supplement labeling context in Singapore.';
-const path        = "/natural-vs-organic-context/";
+const path        = "/natural-vs-organic-context";
+const today       = new Date().toISOString().split("T")[0];
+
+const breadcrumbJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://${site.domain}/` },
+    { "@type": "ListItem", "position": 2, "name": "Natural vs Organic Context", "item": `https://${site.domain}${path}` },
+  ],
+});
 
 const webPageJsonLd = JSON.stringify({
   "@context": "https://schema.org",
@@ -17,6 +27,8 @@ const webPageJsonLd = JSON.stringify({
     "name": site.siteName,
     "url": `https://${site.domain}/`,
   },
+  "dateModified": today,
+  "inLanguage": "en-SG",
 });
 ---
 <BaseLayout title={title} description={description} path={path}>
@@ -102,5 +114,6 @@ const webPageJsonLd = JSON.stringify({
   <p>This page covers the label language distinction between natural and organic in the supplement context. For a broader overview of the Singapore supplement market, including how products are distributed and how label standards vary by country of origin, see the <a href="https://supplementsingapore.neoi.jp/">Supplements Singapore guide</a>.</p>
 
   <script type="application/ld+json" set:html={webPageJsonLd}></script>
+  <script type="application/ld+json" set:html={breadcrumbJsonLd}></script>
 
 </BaseLayout>

@@ -9,6 +9,15 @@ const faqItems = frontmatter.faq ?? [];
 
 const today = new Date().toISOString().split("T")[0];
 
+const breadcrumbJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://${site.domain}/` },
+    { "@type": "ListItem", "position": 2, "name": "FAQ", "item": `https://${site.domain}/faq` },
+  ],
+});
+
 const faqJsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -39,6 +48,8 @@ const faqJsonLd = JSON.stringify({
       src="/faq-bioavailability.png"
       alt="Infographic: Understanding Bioavailability — how the body absorbs supplements, factors affecting absorption, high vs low bioavailability forms, and red flags to watch for on labels"
       class="guide-img"
+      width="960"
+      height="540"
       loading="lazy"
     />
     <figcaption>Bioavailability reference: absorption depends on chemical form, digestive health, and timing — not solely on whether an ingredient is labelled natural or synthetic.</figcaption>
@@ -55,4 +66,5 @@ const faqJsonLd = JSON.stringify({
   </p>
 
   <script type="application/ld+json" set:html={faqJsonLd}></script>
+  <script type="application/ld+json" set:html={breadcrumbJsonLd}></script>
 </BaseLayout>

@@ -7,6 +7,26 @@ interface Props {
   path?: string;
 }
 const { title, description, path } = Astro.props;
+
+const orgJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": site.siteName,
+  "url": `https://${site.domain}/`,
+  "logo": `https://${site.domain}/logo.png`,
+  "description": "An educational resource about natural supplement labels, clean label terminology, and ingredient transparency for Singapore consumers.",
+  "inLanguage": "en-SG",
+  "sameAs": [site.officialSite],
+  "knowsAbout": [
+    "natural supplements",
+    "clean label supplements",
+    "herbal supplements Singapore",
+    "supplement label transparency",
+    "organic vs natural supplements",
+    "supplement ingredient disclosure",
+  ],
+  "areaServed": { "@type": "Country", "name": "Singapore" },
+});
 ---
 <!DOCTYPE html>
 <html lang="en-SG">
@@ -16,6 +36,7 @@ const { title, description, path } = Astro.props;
     <link rel="icon" type="image/png" href="/logo.png" />
     <meta name="theme-color" content="#1a5ca0" />
     <Seo title={title} description={description} path={path} />
+    <script type="application/ld+json" set:html={orgJsonLd}></script>
     <style>
       /* ── Variables ───────────────────────────────────── */
       :root {

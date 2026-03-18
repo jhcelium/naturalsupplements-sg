@@ -17,6 +17,7 @@ const ogImage = `https://${site.domain}${image ?? "/logo.png"}`;
 <meta name="robots" content="index,follow" />
 {desc && <meta name="description" content={desc} />}
 <link rel="canonical" href={canonical} />
+<link rel="alternate" hreflang="x-default" href={canonical} />
 <link rel="alternate" hreflang="en-SG" href={canonical} />
 <link rel="alternate" hreflang="en" href={canonical} />
 
