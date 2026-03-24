@@ -1,19 +1,23 @@
 ---
 import Seo from "../components/Seo.astro";
 import site from "../../data/site.json";
+import { canonicalUrl, siteOrigin } from "../lib/canonical";
+
 interface Props {
   title?: string;
   description?: string;
   path?: string;
+  /** Absolute path to Open Graph image, e.g. /logo.png */
+  image?: string;
 }
-const { title, description, path } = Astro.props;
+const { title, description, path, image } = Astro.props;
 
 const orgJsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": site.siteName,
-  "url": `https://${site.domain}/`,
-  "logo": `https://${site.domain}/logo.png`,
+  "url": canonicalUrl("/"),
+  "logo": `${siteOrigin()}/logo.png`,
   "description": "An educational resource about natural supplement labels, clean label terminology, and ingredient transparency for Singapore consumers.",
   "inLanguage": "en-SG",
   "sameAs": [site.officialSite],
@@ -35,7 +39,7 @@ const orgJsonLd = JSON.stringify({
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/png" href="/logo.png" />
     <meta name="theme-color" content="#1a5ca0" />
-    <Seo title={title} description={description} path={path} />
+    <Seo title={title} description={description} path={path} image={image} />
     <script type="application/ld+json" set:html={orgJsonLd}></script>
     <style>
       /* ── Variables ───────────────────────────────────── */
@@ -300,6 +304,51 @@ const orgJsonLd = JSON.stringify({
         font-style: italic;
       }
 
+      /* ── Breadcrumb (visible; pairs with BreadcrumbList JSON-LD) ── */
+      .breadcrumb {
+        margin: 0 0 20px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--border-light);
+      }
+      .breadcrumb__list {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 0 4px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-size: 12px;
+        color: var(--text-muted);
+        letter-spacing: 0.02em;
+      }
+      .breadcrumb__item {
+        display: inline-flex;
+        align-items: baseline;
+        margin: 0;
+      }
+      .breadcrumb__item:not(:last-child)::after {
+        content: "/";
+        margin-left: 4px;
+        color: var(--border);
+        font-weight: 400;
+        text-decoration: none;
+        pointer-events: none;
+      }
+      .breadcrumb__item a {
+        color: var(--text-muted);
+        text-decoration: none;
+      }
+      .breadcrumb__item a:hover {
+        color: var(--text);
+        text-decoration: underline;
+        text-decoration-color: currentColor;
+      }
+      .breadcrumb__current {
+        color: var(--text-secondary);
+        font-weight: 500;
+      }
+
       /* ── Responsive ──────────────────────────────────── */
       @media (max-width: 600px) {
         h1 { font-size: 1.625rem; }
@@ -324,7 +373,10 @@ const orgJsonLd = JSON.stringify({
       </div>
     </header>
 
-    <main><slot /></main>
+    <main>
+      <slot name="breadcrumb" />
+      <slot />
+    </main>
 
     <footer>
       <div class="footer-inner">

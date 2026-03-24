@@ -1,18 +1,22 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import BreadcrumbNav from "../components/BreadcrumbNav.astro";
+import { canonicalUrl } from "../lib/canonical";
 import site from "../../data/site.json";
 
 const title       = "Natural vs Organic Context";
 const description = 'A structured explanation of how "natural" and "organic" are commonly understood in supplement labeling context in Singapore.';
 const path        = "/natural-vs-organic-context";
+const homeUrl     = canonicalUrl("/");
+const pageUrl     = canonicalUrl(path);
 const today       = new Date().toISOString().split("T")[0];
 
 const breadcrumbJsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://${site.domain}/` },
-    { "@type": "ListItem", "position": 2, "name": "Natural vs Organic Context", "item": `https://${site.domain}${path}` },
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": homeUrl },
+    { "@type": "ListItem", "position": 2, "name": "Natural vs Organic Context", "item": pageUrl },
   ],
 });
 
@@ -21,17 +25,21 @@ const webPageJsonLd = JSON.stringify({
   "@type": "WebPage",
   "name": `${title} | ${site.siteName}`,
   "description": description,
-  "url": `https://${site.domain}${path}`,
+  "url": pageUrl,
   "isPartOf": {
     "@type": "WebSite",
     "name": site.siteName,
-    "url": `https://${site.domain}/`,
+    "url": homeUrl,
   },
   "dateModified": today,
   "inLanguage": "en-SG",
 });
 ---
 <BaseLayout title={title} description={description} path={path}>
+  <BreadcrumbNav
+    slot="breadcrumb"
+    items={[{ name: "Home", href: "/" }, { name: "Natural vs Organic Context" }]}
+  />
 
   <h1>Natural Supplements Singapore: Natural vs Organic Context</h1>
 
