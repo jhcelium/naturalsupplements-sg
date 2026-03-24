@@ -1,15 +1,17 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { loadMarkdown } from "../lib/content";
+import { canonicalUrl, siteOrigin } from "../lib/canonical";
 import site from "../../data/site.json";
 
 const home = loadMarkdown("home.md");
+const homeUrl = canonicalUrl("/");
 
 const websiteJsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": site.siteName,
-  "url": `https://${site.domain}/`,
+  "url": homeUrl,
   "inLanguage": "en-SG",
   "description": home.frontmatter.description,
   "about": {
@@ -20,8 +22,8 @@ const websiteJsonLd = JSON.stringify({
   "publisher": {
     "@type": "Organization",
     "name": site.siteName,
-    "url": `https://${site.domain}/`,
-    "logo": `https://${site.domain}/logo.png`,
+    "url": homeUrl,
+    "logo": `${siteOrigin()}/logo.png`,
   },
   "speakable": {
     "@type": "SpeakableSpecification",

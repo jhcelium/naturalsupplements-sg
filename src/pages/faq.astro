@@ -1,7 +1,12 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import BreadcrumbNav from "../components/BreadcrumbNav.astro";
 import { loadMarkdown } from "../lib/content";
+import { canonicalUrl } from "../lib/canonical";
 import site from "../../data/site.json";
+
+const homeUrl = canonicalUrl("/");
+const faqUrl = canonicalUrl("/faq");
 
 const loaded = loadMarkdown("faq.md");
 const { frontmatter, html } = loaded;
@@ -13,8 +18,8 @@ const breadcrumbJsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://${site.domain}/` },
-    { "@type": "ListItem", "position": 2, "name": "FAQ", "item": `https://${site.domain}/faq` },
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": homeUrl },
+    { "@type": "ListItem", "position": 2, "name": "FAQ", "item": faqUrl },
   ],
 });
 
@@ -35,6 +40,10 @@ const faqJsonLd = JSON.stringify({
 });
 ---
 <BaseLayout title={frontmatter.title} description={frontmatter.description} path="/faq">
+  <BreadcrumbNav
+    slot="breadcrumb"
+    items={[{ name: "Home", href: "/" }, { name: "FAQ" }]}
+  />
   <h1>Natural Supplements Questions in Singapore</h1>
 
   <div class="disclaimer">

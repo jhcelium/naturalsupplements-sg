@@ -1,5 +1,7 @@
 ---
 import site from "../../data/site.json";
+import { canonicalUrl, siteOrigin } from "../lib/canonical";
+
 interface Props {
   title?: string;
   description?: string;
@@ -9,9 +11,10 @@ interface Props {
 const { title, description, path, image } = Astro.props;
 
 const fullTitle = title ? `${title} | ${site.siteName}` : site.siteName;
-const canonical = `https://${site.domain}${path ?? "/"}`;
+const canonical = canonicalUrl(path);
 const desc = description ?? "";
-const ogImage = `https://${site.domain}${image ?? "/logo.png"}`;
+const ogDesc = desc.trim() ? desc : fullTitle;
+const ogImageAbs = `${siteOrigin()}${image ?? "/logo.png"}`;
 ---
 <title>{fullTitle}</title>
 <meta name="robots" content="index,follow" />
@@ -23,9 +26,9 @@ const ogImage = `https://${site.domain}${image ?? "/logo.png"}`;
 
 <meta property="og:type" content="website" />
 <meta property="og:title" content={fullTitle} />
-{desc && <meta property="og:description" content={desc} />}
+<meta property="og:description" content={ogDesc} />
 <meta property="og:url" content={canonical} />
-<meta property="og:image" content={ogImage} />
+<meta property="og:image" content={ogImageAbs} />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:locale" content="en_SG" />
@@ -33,5 +36,5 @@ const ogImage = `https://${site.domain}${image ?? "/logo.png"}`;
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={fullTitle} />
-{desc && <meta name="twitter:description" content={desc} />}
-<meta name="twitter:image" content={ogImage} />
+<meta name="twitter:description" content={ogDesc} />
+<meta name="twitter:image" content={ogImageAbs} />

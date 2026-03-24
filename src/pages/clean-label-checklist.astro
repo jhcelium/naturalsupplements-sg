@@ -1,10 +1,14 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import BreadcrumbNav from "../components/BreadcrumbNav.astro";
+import { canonicalUrl } from "../lib/canonical";
 import site from "../../data/site.json";
 
 const title       = "Clean Label Checklist";
 const description = "A structured checklist explaining clean label concepts in natural supplements sold in Singapore.";
 const path        = "/clean-label-checklist";
+const homeUrl     = canonicalUrl("/");
+const pageUrl     = canonicalUrl(path);
 
 const today = new Date().toISOString().split("T")[0];
 
@@ -13,13 +17,13 @@ const webPageJsonLd = JSON.stringify({
   "@type": "WebPage",
   "name": `${title} | ${site.siteName}`,
   "description": description,
-  "url": `https://${site.domain}${path}`,
+  "url": pageUrl,
   "inLanguage": "en-SG",
   "dateModified": today,
   "isPartOf": {
     "@type": "WebSite",
     "name": site.siteName,
-    "url": `https://${site.domain}/`,
+    "url": homeUrl,
   },
   "speakable": {
     "@type": "SpeakableSpecification",
@@ -32,31 +36,31 @@ const definedTermSetJsonLd = JSON.stringify({
   "@type": "DefinedTermSet",
   "name": "Natural Supplement Label Terms — Singapore",
   "inLanguage": "en-SG",
-  "url": `https://${site.domain}${path}`,
+  "url": pageUrl,
   "hasDefinedTerm": [
     {
       "@type": "DefinedTerm",
       "name": "Natural Supplements",
       "description": "Health supplement products using ingredients described as plant-derived, mineral-based, or animal-sourced rather than fully synthesised. The term has no standardised legal definition in Singapore or most supplement markets.",
-      "inDefinedTermSet": `https://${site.domain}${path}`,
+      "inDefinedTermSet": pageUrl,
     },
     {
       "@type": "DefinedTerm",
       "name": "Clean Label",
       "description": "A marketing phrase, not a regulated standard, describing supplement packaging with a shorter, more readable ingredient list and fewer synthetic additives. Each manufacturer defines the term independently.",
-      "inDefinedTermSet": `https://${site.domain}${path}`,
+      "inDefinedTermSet": pageUrl,
     },
     {
       "@type": "DefinedTerm",
       "name": "Organic Supplement",
       "description": "A supplement ingredient grown or raised without synthetic pesticides or certain agricultural inputs, verified by a certifying body such as USDA Organic or EU Organic. Distinct from 'natural', which requires no third-party audit.",
-      "inDefinedTermSet": `https://${site.domain}${path}`,
+      "inDefinedTermSet": pageUrl,
     },
     {
       "@type": "DefinedTerm",
       "name": "Herbal Supplement",
       "description": "A supplement using plant-derived active ingredients — roots, leaves, bark, or extracts. Herbal does not imply safety for all individuals; some botanical ingredients interact with medications.",
-      "inDefinedTermSet": `https://${site.domain}${path}`,
+      "inDefinedTermSet": pageUrl,
     },
   ],
 });
@@ -65,8 +69,8 @@ const breadcrumbJsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://${site.domain}/` },
-    { "@type": "ListItem", "position": 2, "name": "Clean Label Checklist", "item": `https://${site.domain}${path}` },
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": homeUrl },
+    { "@type": "ListItem", "position": 2, "name": "Clean Label Checklist", "item": pageUrl },
   ],
 });
 
@@ -111,6 +115,10 @@ const faqJsonLd = JSON.stringify({
 });
 ---
 <BaseLayout title={title} description={description} path={path}>
+  <BreadcrumbNav
+    slot="breadcrumb"
+    items={[{ name: "Home", href: "/" }, { name: "Clean Label Checklist" }]}
+  />
 
   <h1>Natural Supplements Singapore: Clean Label Checklist</h1>
 

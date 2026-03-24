@@ -1,7 +1,12 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import BreadcrumbNav from "../components/BreadcrumbNav.astro";
 import { loadMarkdown } from "../lib/content";
+import { canonicalUrl, siteOrigin } from "../lib/canonical";
 import site from "../../data/site.json";
+
+const homeUrl = canonicalUrl("/");
+const aboutUrl = canonicalUrl("/about");
 
 const about = loadMarkdown("about.md");
 
@@ -9,8 +14,8 @@ const orgJsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": site.siteName,
-  "url": `https://${site.domain}/`,
-  "logo": `https://${site.domain}/logo.png`,
+  "url": homeUrl,
+  "logo": `${siteOrigin()}/logo.png`,
   "description": "An educational resource about natural supplement labels, clean label terminology, and ingredient transparency for Singapore consumers.",
   "inLanguage": "en-SG",
   "sameAs": [site.officialSite],
@@ -35,12 +40,12 @@ const aboutPageJsonLd = JSON.stringify({
   "@type": "AboutPage",
   "name": `${about.frontmatter.title} | ${site.siteName}`,
   "description": about.frontmatter.description,
-  "url": `https://${site.domain}/about`,
+  "url": aboutUrl,
   "inLanguage": "en-SG",
   "mainEntity": {
     "@type": "Organization",
     "name": site.siteName,
-    "url": `https://${site.domain}/`,
+    "url": homeUrl,
   },
 });
 
@@ -48,12 +53,16 @@ const breadcrumbJsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://${site.domain}/` },
-    { "@type": "ListItem", "position": 2, "name": "About", "item": `https://${site.domain}/about` },
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": homeUrl },
+    { "@type": "ListItem", "position": 2, "name": "About", "item": aboutUrl },
   ],
 });
 ---
 <BaseLayout title={about.frontmatter.title} description={about.frontmatter.description} path="/about">
+  <BreadcrumbNav
+    slot="breadcrumb"
+    items={[{ name: "Home", href: "/" }, { name: "About" }]}
+  />
   <h1>About Natural Supplements Singapore</h1>
 
   <article set:html={about.html} />
