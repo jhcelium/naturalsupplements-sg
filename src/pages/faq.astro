@@ -1,18 +1,44 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import BreadcrumbNav from "../components/BreadcrumbNav.astro";
-import { loadMarkdown } from "../lib/content";
 import { canonicalUrl } from "../lib/canonical";
 import site from "../../data/site.json";
 
+const fullTitle =
+  "Natural Supplements Singapore | FAQ";
+const description =
+  "Frequently asked questions about natural supplements, clean label wording, and natural-versus-organic context in Singapore.";
+
 const homeUrl = canonicalUrl("/");
 const faqUrl = canonicalUrl("/faq");
-
-const loaded = loadMarkdown("faq.md");
-const { frontmatter, html } = loaded;
-const faqItems = frontmatter.faq ?? [];
-
 const today = new Date().toISOString().split("T")[0];
+
+const faqItems = [
+  {
+    q: 'What does "natural supplements singapore" usually mean?',
+    a: "In consumer search and on packaging, the phrase usually refers to health supplements described as using plant-derived, mineral, or animal-sourced ingredients rather than fully synthetic actives. It is not one regulated legal definition in Singapore. It signals how sellers characterise origin, not verified quality, potency, or suitability for any individual.",
+  },
+  {
+    q: "What is clean label in supplement context?",
+    a: "Clean label is a marketing phrase for packaging that highlights a shorter, easier-to-read ingredient list, often with fewer synthetic additives or unfamiliar chemical names. It is not a certified standard. Brands define it differently, so the same wording may describe different formulations.",
+  },
+  {
+    q: "Are natural and organic the same thing?",
+    a: "No. Natural usually refers to ingredient origin. Organic refers to how an ingredient was grown or produced, often with third-party certification for agricultural inputs. A product can be natural without being organic, or organic without using the word natural prominently. Neither label alone states concentration or bioavailability.",
+  },
+  {
+    q: "Why do people search for herbal supplements in Singapore?",
+    a: "Many products use botanical actives, and labels reflect different countries of import and regulatory wording. Shoppers want to interpret terms, consider interactions, and compare pharmacy versus online information. Searches typically aim to read labels more clearly, not to pick a ranked product.",
+  },
+  {
+    q: "What kind of wording appears on natural supplement labels?",
+    a: "Labels may list botanical or common plant names, extract descriptions, natural flavour or natural source claims, and separate other ingredients such as binders or coatings. Some lines are descriptive only; others sit next to certification logos. The full ingredient list matters more than front slogans.",
+  },
+  {
+    q: "Is this site endorsing products or certification claims?",
+    a: "No. This site explains general label and consumer language only. It does not endorse brands, compare products, or guarantee that packaging claims meet any certification. For product-specific or clinical questions, speak with a qualified clinician or check statements from manufacturers and certifiers.",
+  },
+] as const;
 
 const breadcrumbJsonLd = JSON.stringify({
   "@context": "https://schema.org",
@@ -23,57 +49,101 @@ const breadcrumbJsonLd = JSON.stringify({
   ],
 });
 
-const faqJsonLd = JSON.stringify({
+const faqPageJsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "inLanguage": "en-SG",
   "dateModified": today,
-  "speakable": {
-    "@type": "SpeakableSpecification",
-    "cssSelector": ["h1", "article p:first-of-type"],
-  },
   "mainEntity": faqItems.map((item) => ({
     "@type": "Question",
     "name": item.q,
     "acceptedAnswer": { "@type": "Answer", "text": item.a },
   })),
 });
+
+const webPageJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": fullTitle,
+  "description": description,
+  "url": faqUrl,
+  "inLanguage": "en-SG",
+  "dateModified": today,
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": site.siteName,
+    "url": homeUrl,
+  },
+});
 ---
-<BaseLayout title={frontmatter.title} description={frontmatter.description} path="/faq">
+<BaseLayout fullTitle={fullTitle} description={description} path="/faq">
   <BreadcrumbNav
     slot="breadcrumb"
     items={[{ name: "Home", href: "/" }, { name: "FAQ" }]}
   />
-  <h1>Natural Supplements Questions in Singapore</h1>
+
+  <h1>Natural Supplements Singapore: Frequently Asked Questions</h1>
+
+  <p>
+    This page answers common questions about <strong>natural supplements singapore</strong> search language,
+    <strong>clean label supplements</strong> wording, <strong>natural supplement label meaning</strong>, and
+    <strong>herbal supplements singapore</strong> context. It also clarifies
+    <strong>what is clean label supplement</strong> phrasing, the
+    <strong>natural vs organic supplements difference</strong>, and
+    <strong>what natural means on supplement labels</strong> in a general, non-commercial way.
+    Use it to read packaging and search results more calmly, not to choose a specific product.
+    Nothing here is medical advice or a substitute for speaking with your own clinician.
+  </p>
 
   <div class="disclaimer">
     General educational information only. Not medical advice. Always consult a qualified clinician for your own situation.
   </div>
 
-  <article set:html={html} />
+  <section class="faq-list" aria-label="Frequently asked questions">
+    {
+      faqItems.map((item) => (
+        <div class="faq-item">
+          <h2>{item.q}</h2>
+          <p>{item.a}</p>
+        </div>
+      ))
+    }
+  </section>
 
-  <figure class="guide-figure">
-    <img
-      src="/faq-bioavailability.png"
-      alt="Infographic: Understanding Bioavailability — how the body absorbs supplements, factors affecting absorption, high vs low bioavailability forms, and red flags to watch for on labels"
-      class="guide-img"
-      width="960"
-      height="540"
-      loading="lazy"
-    />
-    <figcaption>Bioavailability reference: absorption depends on chemical form, digestive health, and timing — not solely on whether an ingredient is labelled natural or synthetic.</figcaption>
-  </figure>
+  <h2>Key Takeaway</h2>
 
-  <div class="hub-link-block">
-    <p>For a broader look at the Singapore supplement market, see the <a href="https://supplementsingapore.neoi.jp">Supplements Singapore guide</a>.</p>
+  <div class="key-takeaway">
+    <p>
+      &quot;Natural&quot; and &quot;clean label&quot; describe how supplement packaging is worded, not a single legal standard in Singapore.
+      <strong>Organic</strong> is a different idea, usually tied to certified agricultural sourcing.
+      Read full ingredient lists and ask what each claim refers to. This site does not rank products or validate certifications; it only explains how consumers and labels tend to use these terms so you can ask better questions of professionals and sellers.
+    </p>
   </div>
 
-  <p style="margin-top: 32px;">
-    <a href={site.officialSite} target="_blank" rel="noopener" class="official-link">
-      Visit Official Neoi Supplement Site →
-    </a>
+  <h2>Related Context</h2>
+
+  <p>
+    For a broader overview of the supplement market in Singapore, see the
+    <a href="https://supplementsingapore.neoi.jp/">Supplements Singapore guide</a>.
   </p>
 
-  <script type="application/ld+json" set:html={faqJsonLd}></script>
+  <script type="application/ld+json" set:html={webPageJsonLd}></script>
+  <script type="application/ld+json" set:html={faqPageJsonLd}></script>
   <script type="application/ld+json" set:html={breadcrumbJsonLd}></script>
+
+  <style>
+    .faq-list .faq-item h2 {
+      margin-top: 28px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-light, #e8e8e8);
+    }
+    .faq-list .faq-item:first-child h2 {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+    .faq-list .faq-item p {
+      margin-bottom: 8px;
+    }
+  </style>
 </BaseLayout>

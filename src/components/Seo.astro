@@ -4,13 +4,15 @@ import { canonicalUrl, siteOrigin } from "../lib/canonical";
 
 interface Props {
   title?: string;
+  /** When set, used as the full document title (no automatic site-name suffix). */
+  fullTitle?: string;
   description?: string;
   path?: string;
   image?: string;
 }
-const { title, description, path, image } = Astro.props;
+const { title, fullTitle: fullTitleProp, description, path, image } = Astro.props;
 
-const fullTitle = title ? `${title} | ${site.siteName}` : site.siteName;
+const fullTitle = fullTitleProp ?? (title ? `${title} | ${site.siteName}` : site.siteName);
 const canonical = canonicalUrl(path);
 const desc = description ?? "";
 const ogDesc = desc.trim() ? desc : fullTitle;

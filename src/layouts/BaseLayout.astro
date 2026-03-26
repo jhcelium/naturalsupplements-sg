@@ -5,12 +5,13 @@ import { canonicalUrl, siteOrigin } from "../lib/canonical";
 
 interface Props {
   title?: string;
+  fullTitle?: string;
   description?: string;
   path?: string;
   /** Absolute path to Open Graph image, e.g. /logo.png */
   image?: string;
 }
-const { title, description, path, image } = Astro.props;
+const { title, fullTitle, description, path, image } = Astro.props;
 
 const orgJsonLd = JSON.stringify({
   "@context": "https://schema.org",
@@ -39,7 +40,7 @@ const orgJsonLd = JSON.stringify({
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/png" href="/logo.png" />
     <meta name="theme-color" content="#1a5ca0" />
-    <Seo title={title} description={description} path={path} image={image} />
+    <Seo title={title} fullTitle={fullTitle} description={description} path={path} image={image} />
     <script type="application/ld+json" set:html={orgJsonLd}></script>
     <style>
       /* ── Variables ───────────────────────────────────── */
