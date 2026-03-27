@@ -41,6 +41,8 @@ const orgJsonLd = JSON.stringify({
     <link rel="icon" type="image/png" href="/logo.png" />
     <meta name="theme-color" content="#1a5ca0" />
     <Seo title={title} fullTitle={fullTitle} description={description} path={path} image={image} />
+    <!-- Optional: per-page JSON-LD or link tags (e.g. DefinedTermSet in head) -->
+    <slot name="head" />
     <script type="application/ld+json" set:html={orgJsonLd}></script>
     <style>
       /* ── Variables ───────────────────────────────────── */

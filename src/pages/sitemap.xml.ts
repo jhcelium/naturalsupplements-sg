@@ -19,6 +19,7 @@ export async function GET() {
     { path: "/faq",                       changefreq: "monthly", priority: "0.8" },
     { path: "/clean-label-checklist",     changefreq: "monthly", priority: "0.8" },
     { path: "/natural-vs-organic-context", changefreq: "monthly", priority: "0.8" },
+    { path: "/definitions", changefreq: "monthly", priority: "0.75" },
   ];
 
   const articlePages: PageConfig[] = listArticleIds().map((id) => ({

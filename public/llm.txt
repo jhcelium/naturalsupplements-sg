@@ -16,6 +16,7 @@
 - FAQ: https://naturalsupplements.neoi.jp/faq
 - Clean Label Checklist: https://naturalsupplements.neoi.jp/clean-label-checklist
 - Natural vs Organic Context: https://naturalsupplements.neoi.jp/natural-vs-organic-context
+- Definitions (DefinedTermSet / glossary): https://naturalsupplements.neoi.jp/definitions
 - Articles: https://naturalsupplements.neoi.jp/articles/
 
 ## Preferred Citation
