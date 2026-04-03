@@ -4,42 +4,71 @@ import BreadcrumbNav from "../components/BreadcrumbNav.astro";
 import { canonicalUrl } from "../lib/canonical";
 import site from "../../data/site.json";
 
-const fullTitle =
-  "Natural Supplements Singapore | Definitions";
+const fullTitle = "Natural Supplements Singapore | Definitions";
 const description =
-  "Plain-language definitions of natural supplement, clean label, and organic wording as used in Singapore-facing packaging and search — educational only, not certification or product guidance.";
+  "Definitions of key natural supplement terms in Singapore, including clean label, additive disclosure, botanical identification, and organic context.";
 const path = "/definitions";
 
 const homeUrl = canonicalUrl("/");
 const pageUrl = canonicalUrl(path);
 const today = new Date().toISOString().split("T")[0];
 
-/** Visible copy + DefinedTermSet entries stay aligned. */
-const terms = [
+type TermBlock = {
+  h2: string;
+  direct: string;
+  support: string;
+};
+
+const terms: TermBlock[] = [
   {
-    name: "Natural (supplement labelling)",
-    text: "Usually describes ingredient origin — plant, mineral, or animal-sourced — rather than fully synthetic manufacture. It is not one standard legal definition for all products in Singapore; read the full ingredient list rather than front-of-pack slogans alone.",
+    h2: "Natural Supplement Wording",
+    direct:
+      '"Natural" on supplement packaging usually means key ingredients are described as plant-, mineral-, or animal-derived rather than fully lab-synthesised. In Singapore, as in many markets, the word is not one legal threshold for every product; it reflects how the brand frames origin, not a single standard you can trust without reading the full ingredient list.',
+    support:
+      "When people search **natural supplements singapore**, they often picture fewer synthetic inputs or something closer to food. Labels may say “natural source” or “naturally derived” on the front while the back still lists excipients and processing aids. **What natural wording means on packaging** is therefore contextual: it signals marketing language about origin, not a uniform rule across imports from Japan, the US, Europe, or Australia. Comparing **natural supplement label meaning** across products means checking scientific or botanical names, amounts, and any qualifying text — not stopping at the headline phrase alone.",
   },
   {
-    name: "Clean label",
-    text: "A marketing phrase for shorter, more readable ingredient lists and fewer unfamiliar additive names. It is not a single certified standard; brands define it differently, so the same words may not mean the same formulation.",
+    h2: "Clean Label",
+    direct:
+      '"Clean label" is shorthand for a shorter, easier-to-scan ingredient list, often with plainer language and fewer synthetic-sounding additive names. It is a marketing construct, not one universal certification; companies define their own boundaries for what counts as “clean,” so the same phrase can sit on different formulations.',
+    support:
+      "Understanding **what clean label means in supplement context** sets realistic expectations: two products can both say “clean” yet differ in additive use. **Clean label supplements** messaging in Singapore appears on goods governed by varied country-of-origin rules, so front-panel language may not match how another market would describe the same formula. A neutral read means opening the full list, including “other ingredients,” and checking whether unfamiliar names are identified clearly — rather than assuming “clean” equals minimal processing, safety, or suitability for you.",
   },
   {
-    name: "Organic (supplement context)",
-    text: "Refers to how an ingredient was grown or produced, often with third-party agricultural certification. It is not interchangeable with “natural.” A label may show one term, both, or neither; check logos and supporting text for what is actually certified.",
+    h2: "Additive Disclosure",
+    direct:
+      "Additive disclosure is listing non-primary ingredients — binders, fillers, coatings, flow agents, colours, or flavours — on the label, often after actives or under an “other ingredients” line. It is the mechanism that shows everything in the product, not only the compounds featured on the front.",
+    support:
+      "**What additive disclosure means** for your own review is transparency: each entry should be identifiable enough to look up or discuss with a pharmacist. Some labels group components vaguely; others name each substance. Singapore’s shelves mix formats from many jurisdictions. Neither the presence nor absence of additives alone signals quality — some additives stabilise delivery. The useful habit is to read the full disclosure, note anything relevant to sensitivities or medicines you take, and raise gaps or doubts with a clinician rather than inferring merit from wording alone.",
   },
-] as const;
+  {
+    h2: "Botanical Identification",
+    direct:
+      "Botanical identification names the plant or plant part used — common name, Latin binomial (genus and species), or both. That specificity helps separate look-alike common names and supports traceability when you check interactions or references. It does not, by itself, confirm potency or extraction quality.",
+    support:
+      "For **botanical identification**, look for detail beyond vague “herbal blend” lines: species, plant part (root, leaf, seed), and extract type matter because extracts differ from whole-herb powders. Regional traditions and import sources vary across **natural supplements singapore** offerings. Identification is a label-clarity signal: it shows the label is naming inputs precisely enough to verify, not that any botanical is appropriate for every person or condition.",
+  },
+  {
+    h2: "Organic Context",
+    direct:
+      "Organic context is language or logos tied to how an ingredient was grown or produced under organic farming rules, often with a named certification programme. It does not automatically cover the whole product unless each relevant ingredient and the finished claim are within that scheme’s scope.",
+    support:
+      "**Organic context** answers a different question than loose “natural” wording: it points to agricultural inputs and audited processes where certification applies. **What organic context means on supplement labels** may include marks, certificate references, or footnotes to standards such as USDA Organic or EU Organic, depending on source. Treat such marks as sourcing signals, not clinical benefit claims. Still read full **natural supplement label meaning** — amounts, other ingredients, manufacture country — before asking professionals product-specific questions.",
+  },
+];
+
+const definedTermDescriptions = terms.map((t) => `${t.direct} ${t.support}`.replace(/\*\*/g, ""));
 
 const definedTermSetJsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "DefinedTermSet",
-  "name": "Supplement label vocabulary — Singapore context",
+  "name": "Natural supplement label definitions — Singapore",
   "inLanguage": "en-SG",
   "url": pageUrl,
-  "hasDefinedTerm": terms.map((t) => ({
+  "hasDefinedTerm": terms.map((t, i) => ({
     "@type": "DefinedTerm",
-    "name": t.name,
-    "description": t.text,
+    "name": t.h2,
+    "description": definedTermDescriptions[i],
     "inDefinedTermSet": pageUrl,
   })),
 });
@@ -76,34 +105,47 @@ const breadcrumbJsonLd = JSON.stringify({
     items={[{ name: "Home", href: "/" }, { name: "Definitions" }]}
   />
 
-  <h1>Natural Supplements Singapore: Label Definitions</h1>
+  <h1>Natural Supplements Singapore: Definitions</h1>
 
   <p>
-    Short reference for how common words appear in <strong>natural supplements singapore</strong> search and on packaging.
-    These notes explain <strong>clean label supplements</strong> language and <strong>natural vs organic supplements difference</strong> at a high level only — not medical advice, not endorsement, not certification claims.
+    This page defines vocabulary you often see with <strong>natural supplements singapore</strong> search results and on retail packaging.
+    It covers <strong>clean label supplements</strong> language, <strong>natural supplement label meaning</strong>, <strong>botanical identification</strong> on ingredient lists, and <strong>organic context</strong> where certification wording appears.
+    It explains <strong>what clean label means in supplement context</strong>, <strong>what natural wording means on packaging</strong>, <strong>what additive disclosure means</strong>, and <strong>what organic context means on supplement labels</strong> in neutral, general terms only.
+    Nothing here endorses a brand, guarantees a certification outcome, or replaces advice from a qualified clinician.
   </p>
 
   <div class="disclaimer">
-    Educational wording only. Not medical advice. For product-specific claims, check the label, manufacturer, certifier, or your clinician.
+    Educational wording only. Not medical advice. For product-specific claims, use the label, manufacturer, certifier, or your clinician.
   </div>
 
-  <section aria-label="Defined terms">
+  <section aria-label="Definitions">
     {
       terms.map((t) => (
         <div class="def-term">
-          <h2>{t.name}</h2>
-          <p>{t.text}</p>
+          <h2>{t.h2}</h2>
+          <p>{t.direct}</p>
+          <p set:html={t.support.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")} />
         </div>
       ))
     }
   </section>
 
-  <div class="hub-link-block">
+  <h2>Key Takeaway</h2>
+
+  <div class="key-takeaway">
     <p>
-      For broader market context, see the
-      <a href="https://supplementsingapore.neoi.jp/">Supplements Singapore guide</a>.
+      Natural wording, clean label, additive disclosure, botanical identification, and organic context each describe a different slice of how a supplement is presented — not one interchangeable claim.
+      None replaces reading the full ingredient list or asking a professional about your situation.
+      In Singapore’s mixed import market, compare front language to back-panel facts, judge how clearly additives and botanicals are identified, and treat organic marks as sourcing context, not proof of benefit or fit for every buyer.
     </p>
   </div>
+
+  <h2>Related Context</h2>
+
+  <p>
+    For a wider view of how supplements are discussed and sold in Singapore, see the
+    <a href="https://supplementsingapore.neoi.jp/">Supplements Singapore guide</a>.
+  </p>
 
   <script type="application/ld+json" set:html={webPageJsonLd}></script>
   <script type="application/ld+json" set:html={breadcrumbJsonLd}></script>
