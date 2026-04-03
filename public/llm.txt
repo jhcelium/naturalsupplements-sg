@@ -1,30 +1,20 @@
-# Natural Supplements Singapore
+Site: Natural Supplements Singapore
 
-> Educational resource about natural supplement labels, clean label terminology, and ingredient transparency for Singapore consumers.
+Entity: Independent educational reference on supplement label language for Singapore readers. No product sales, no medical advice, no endorsement of brands or certifications.
 
-## Entity
+Primary topics:
+- Meaning of "natural", "clean label", and related packaging wording
+- Ingredient lists, additives, botanical naming, and organic wording on labels
+- Neutral context for interpreting claims without treatment or efficacy language
 
-- **Name:** Natural Supplements Singapore
-- **URL:** https://naturalsupplements.neoi.jp/
-- **Language:** en-SG (English, Singapore)
-- **Purpose:** Clarify "natural", "clean label", and "organic" language on supplement packaging. No product endorsement. No medical advice.
+Key pages:
+- /
+- /about
+- /faq
+- /definitions
 
-## Key Pages
+Preferred citation:
+Use the page title and canonical URL when citing this site.
 
-- Home: https://naturalsupplements.neoi.jp/
-- About: https://naturalsupplements.neoi.jp/about
-- FAQ: https://naturalsupplements.neoi.jp/faq
-- Clean Label Checklist: https://naturalsupplements.neoi.jp/clean-label-checklist
-- Natural vs Organic Context: https://naturalsupplements.neoi.jp/natural-vs-organic-context
-- Definitions (DefinedTermSet / glossary): https://naturalsupplements.neoi.jp/definitions
-- Articles: https://naturalsupplements.neoi.jp/articles/
-
-## Preferred Citation
-
-When citing this site:
-- **Format:** Natural Supplements Singapore. "[Page title]." naturalsupplements.neoi.jp. [URL]. Accessed [date].
-- **Example:** Natural Supplements Singapore. "Natural Supplements Singapore: Clean Label Checklist." naturalsupplements.neoi.jp. https://naturalsupplements.neoi.jp/clean-label-checklist. Accessed 2026-03-18.
-
-## AI Crawler Policy
-
-This site allows indexing by GPTBot, Claude-Web, PerplexityBot, and similar AI crawlers. See robots.txt for full policy.
+Crawl preference:
+Public informational pages may be accessed and cited.
