@@ -1,5 +1,5 @@
 ---
-title: 'Natural Supplements Singapore | What "Natural" Labels Mean'
+title: 'What "Natural" Labels Mean'
 description: 'A calm guide to natural supplements in Singapore: clean label terms, ingredient transparency, additives, and label interpretation.'
 primary_kw: natural supplements singapore
 secondary_kws:
@@ -82,3 +82,12 @@ In Singapore, health supplements are regulated by the **Health Sciences Authorit
 This regulatory structure means the word "natural" on a supplement label sold in Singapore is a marketing descriptor, not an HSA-defined or HSA-verified claim. HSA's labelling guidelines prohibit health claims that imply a supplement can treat or cure a disease, but terms like "natural", "clean label", or "herbal" are marketing language that falls outside any standardised definition enforced by the authority.
 
 For consumers, this means the burden of evaluation largely rests on reading labels carefully, checking certifications independently, and asking a pharmacist or clinician when uncertain about a specific product or ingredient.
+
+## Related guides
+
+- [Clean label checklist](/clean-label-checklist)
+- [Organic vs natural context](/natural-vs-organic-context)
+- [Key terms and definitions](/definitions)
+- [What "natural" actually means](/articles/01-what-is)
+- [Pharmacy vs online buying](/articles/03-pharmacy-vs-online)
+- [Reading supplement labels](/articles/04-reading-labels)
