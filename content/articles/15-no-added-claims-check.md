@@ -9,8 +9,6 @@ dateModified: "2026-07-04"
 
 *Written by the Natural Supplements Singapore editorial team · Last updated: 4 July 2026*
 
-# No Added Supplement Claims
-
 No added supplement claims can help Singapore buyers notice cleaner label wording, but they should not be treated as proof that a product is safer, more natural, or suitable for every person. This guide is educational information only, not medical advice, and it shows how to read "no added" wording beside the full ingredient list and warnings.
 
 ## What no added wording can mean
