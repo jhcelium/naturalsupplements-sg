@@ -9,8 +9,6 @@ dateModified: "2026-07-14"
 
 *Written by the Natural Supplements Singapore editorial team · Last updated: 14 July 2026*
 
-# Botanical Name Label Check
-
 A botanical name label check helps Singapore supplement buyers separate a precise plant-ingredient record from a broad front-label phrase such as “herbal” or “natural”. This educational guide, not medical advice, shows how to read the scientific name, plant part, preparation, and quantity without treating those details as proof of effectiveness or personal suitability.
 
 ## Why botanical names matter
